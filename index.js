@@ -9,20 +9,20 @@ function getRepository() {
 			if(response.ok) {
 				return response.json();
 			}
-			throw new Error(response.statusText);
+			throw new Error('Something is wrong from the search');
 			})
-		.then(responseJson => console.log(responseJson))
-		.catch(error => alert('Something went wrong. Try again later.'));
+		.then(responseJson => displayRespository(responseJson))
+		.catch(error => alert('Something is wrong with the displayRespository function.'));
 }
 
 function displayRespository(responseJson) {
 	console.log(responseJson);
 	$('.results').empty();
-	/*for(i = 0, i <= responseJson.length, i++) {
+	for(i = 0; i <= responseJson.item.length; i++) {
 	$('.results').append(`
-		<h2>${responseJson[i].name}</h2>
-		<h3>${responseJson[i].html_url}</h3>
-		`)};*/
+		<h2>${responseJson.item[i].name}</h2>
+		<h3>${responseJson.item[i].url}</h3>
+		`)};
 	$('.results').removeClass('hidden');
 }
 
